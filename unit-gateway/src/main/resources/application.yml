@@ -1,0 +1,19 @@
+server:
+  port: 9528
+spring:
+  application:
+    name: nacos-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: hello_route
+          #格式为：lb://应用注册服务名
+          uri: lb://nacos-provider
+          predicates:
+            - Method=get
